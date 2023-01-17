@@ -2,15 +2,17 @@
 using Employee.Data.Repositories;
 using Employee.Domain.Entities;
 using Employee.Domain.Enums;
+using Employee.Service.Interfaces;
+using Employee.Service.Services;
 
 namespace Employee.App
 {
+#pragma warning disable
     public partial class EmployeeView : Form
     {
-#pragma warning disable
-
         #region private
-        private IEmployeeRepository employeeRepository;
+        private IEmployeeService employeeService;
+
         private IList<EmployeeModel> employees;
         private long EmployeeId;
         #endregion
@@ -18,7 +20,7 @@ namespace Employee.App
         public EmployeeView()
         {
             InitializeComponent();
-            employeeRepository = new EmployeeRepository();
+            employeeService = new EmployeeService();
         }
 
         #region buttons
@@ -30,24 +32,24 @@ namespace Employee.App
                 {
                     EmployeeModel model = new EmployeeModel()
                     {
+                        Id = EmployeeId,
                         Name = Name_txt.Text,
                         CurrentCity = City_txt.Text,
                         Department = Department_txt.Text,
                         GenderType = Gender_ComboBox.Text == "Male" ? Gender.Male : Gender.Female
                     };
+                    var employee = await employeeService.GetAsync(p => p.Id == model.Id);
 
-                    bool exist = await employeeRepository.DeleteAsync(p => p.Id == EmployeeId);
-
-                    if(exist == true)
+                    if (employee == null)
                     {
-                        employeeRepository.CreateAsync(model);
-                        MessageBox.Show("Updated!");
-                    }
+                        employeeService.CreateAsync(model);
+                        MessageBox.Show("Saved!");
+                    }   
 
                     else
                     {
-                        employeeRepository.CreateAsync(model);
-                        MessageBox.Show("Saved!");
+                        employeeService.UpdateAsync(model);
+                        MessageBox.Show("Updated!");
                     }
 
 
@@ -70,7 +72,7 @@ namespace Employee.App
         {
             try
             {
-                await employeeRepository.DeleteAllAsync();
+                await employeeService.DeleteAllAsync();
                 MessageBox.Show("All Deleted !!!");
                 dataGridView1.DataSource = GetDataEmployee().Result;
             }
@@ -82,7 +84,7 @@ namespace Employee.App
             EmployeeModel employee = (EmployeeModel)dataGridView1.SelectedRows[0].DataBoundItem;
             if (employee is not null)
             {
-                bool isDeleted = await employeeRepository.DeleteAsync(p => p.Id == employee.Id);
+                bool isDeleted = await employeeService.DeleteAsync(p => p.Id == employee.Id);
 
                 if (isDeleted)
                 {
@@ -114,7 +116,7 @@ namespace Employee.App
         //Returns employee data
         private async Task<IList<EmployeeModel>> GetDataEmployee()
         {
-            employees = (await employeeRepository.GetAllAsync()).ToList();
+            employees = (await employeeService.GetAllAsync()).ToList();
 
             return employees;
         }
