@@ -37,7 +37,7 @@
             this.Save_btn = new System.Windows.Forms.Button();
             this.Clear_btn = new System.Windows.Forms.Button();
             this.Delete_btn = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridEmployee = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.currentCityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,7 +52,7 @@
             this.Back_btn = new System.Windows.Forms.Button();
             this.Next_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -130,31 +130,31 @@
             this.Delete_btn.UseVisualStyleBackColor = true;
             this.Delete_btn.Click += new System.EventHandler(this.Delete_btn_Click);
             // 
-            // dataGridView1
+            // dataGridEmployee
             // 
-            this.dataGridView1.AllowDrop = true;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridEmployee.AllowDrop = true;
+            this.dataGridEmployee.AllowUserToDeleteRows = false;
+            this.dataGridEmployee.AllowUserToOrderColumns = true;
+            this.dataGridEmployee.AllowUserToResizeColumns = false;
+            this.dataGridEmployee.AllowUserToResizeRows = false;
+            this.dataGridEmployee.AutoGenerateColumns = false;
+            this.dataGridEmployee.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dataGridEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridEmployee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
             this.currentCityDataGridViewTextBoxColumn,
             this.departmentDataGridViewTextBoxColumn,
             this.genderTypeDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.employeeModelBindingSource1;
-            this.dataGridView1.Location = new System.Drawing.Point(1, 225);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(418, 331);
-            this.dataGridView1.TabIndex = 11;
-            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_DoubleClick);
+            this.dataGridEmployee.DataSource = this.employeeModelBindingSource1;
+            this.dataGridEmployee.Location = new System.Drawing.Point(1, 225);
+            this.dataGridEmployee.MultiSelect = false;
+            this.dataGridEmployee.Name = "dataGridEmployee";
+            this.dataGridEmployee.ReadOnly = true;
+            this.dataGridEmployee.RowTemplate.Height = 25;
+            this.dataGridEmployee.Size = new System.Drawing.Size(418, 331);
+            this.dataGridEmployee.TabIndex = 11;
+            this.dataGridEmployee.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridEmployee_DoubleClick);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -291,7 +291,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridEmployee);
             this.Controls.Add(this.Delete_btn);
             this.Controls.Add(this.Clear_btn);
             this.Controls.Add(this.Save_btn);
@@ -304,7 +304,7 @@
             this.Text = "Employee app";
             this.Load += new System.EventHandler(this.EmployeeView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridEmployee)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -320,7 +320,7 @@
         private Button Clear_btn;
         private Button Delete_btn;
         private BindingSource employeeModelBindingSource;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridEmployee;
         private BindingSource employeeModelBindingSource1;
         private Label label1;
         private Label label2;

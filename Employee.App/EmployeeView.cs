@@ -38,6 +38,7 @@ namespace Employee.App
                         Department = Department_txt.Text,
                         GenderType = Gender_ComboBox.Text == "Male" ? Gender.Male : Gender.Female
                     };
+                    
                     var employee = await employeeService.GetAsync(p => p.Id == model.Id);
 
                     if (employee == null)
@@ -52,11 +53,13 @@ namespace Employee.App
                         MessageBox.Show("Updated!");
                     }
 
-
+                    #region
                     Name_txt.Clear();
                     City_txt.Clear();
                     Department_txt.Clear();
-                    dataGridView1.DataSource = GetDataEmployee().Result;
+
+                    dataGridEmployee.DataSource = GetDataEmployee().Result;
+                    #endregion
                 }
 
                 else
@@ -74,14 +77,14 @@ namespace Employee.App
             {
                 await employeeService.DeleteAllAsync();
                 MessageBox.Show("All Deleted !!!");
-                dataGridView1.DataSource = GetDataEmployee().Result;
+                dataGridEmployee.DataSource = GetDataEmployee().Result;
             }
             catch { MessageBox.Show("Error"); }
         }
 
         private async void Delete_btn_Click(object sender, EventArgs e)
         {
-            EmployeeModel employee = (EmployeeModel)dataGridView1.SelectedRows[0].DataBoundItem;
+            EmployeeModel employee = (EmployeeModel)dataGridEmployee.SelectedRows[0].DataBoundItem;
             if (employee is not null)
             {
                 bool isDeleted = await employeeService.DeleteAsync(p => p.Id == employee.Id);
@@ -89,7 +92,7 @@ namespace Employee.App
                 if (isDeleted)
                 {
                     MessageBox.Show($"{employee.Name} Deleted!");
-                    dataGridView1.DataSource = GetDataEmployee().Result;
+                    dataGridEmployee.DataSource = GetDataEmployee().Result;
                 }
 
                 else
@@ -105,12 +108,29 @@ namespace Employee.App
             Department_txt.Clear();
             Gender_ComboBox.Text = "";
         }
-        #endregion
 
+        private async void Next_btn_Click(object sender, EventArgs e)
+        {
+            limit += 1;
+            employees = (await employeeService.GetAllAsync(null, limit)).ToList();
+            dataGridEmployee.DataSource = employees;
+        }
+
+        private async void Back_btn_Click(object sender, EventArgs e)
+        {
+            if (limit > 1)
+            {
+                limit -= 1;
+                employees = (await employeeService.GetAllAsync(null, limit)).ToList();
+                dataGridEmployee.DataSource = employees;
+            }
+            else { MessageBox.Show("Siz birinchi pagedasiz"); }
+        }
+        #endregion
 
         private void EmployeeView_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = GetDataEmployee().Result;
+            dataGridEmployee.DataSource = GetDataEmployee().Result;
         }
 
         //Returns employee data
@@ -121,33 +141,15 @@ namespace Employee.App
             return employees;
         }
 
-        private void dataGridView1_DoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridEmployee_DoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            EmployeeModel employee = dataGridView1.Rows[e.RowIndex].DataBoundItem as EmployeeModel;
+            EmployeeModel employee = dataGridEmployee.Rows[e.RowIndex].DataBoundItem as EmployeeModel;
 
             EmployeeId = employee.Id;
             Name_txt.Text = employee.Name;
             City_txt.Text = employee.CurrentCity;
             Department_txt.Text = employee.Department;
             Gender_ComboBox.Text = employee.GenderType.ToString();
-        }
-
-        private async void Next_btn_Click(object sender, EventArgs e)
-        {
-            limit += 1;
-            employees = (await employeeService.GetAllAsync(null, limit)).ToList();
-            dataGridView1.DataSource = employees;
-        }
-
-        private async void Back_btn_Click(object sender, EventArgs e)
-        {
-            if(limit > 1)
-            {
-                limit -= 1;
-                employees = (await employeeService.GetAllAsync(null, limit)).ToList();
-                dataGridView1.DataSource = employees;
-            }
-            else { MessageBox.Show("Siz birinchi pagedasiz"); }
         }
     }
 }

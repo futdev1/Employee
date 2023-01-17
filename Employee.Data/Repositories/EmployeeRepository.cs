@@ -9,9 +9,12 @@ namespace Employee.Data.Repositories
 #pragma warning disable
     public class EmployeeRepository : IEmployeeRepository
     {
+        #region private
         private EmployeeDbContext dbContext;
         private DbSet<EmployeeModel> dbSet;
+        #endregion
 
+        //constructor
         public EmployeeRepository()
         {
             dbContext = new EmployeeDbContext();
