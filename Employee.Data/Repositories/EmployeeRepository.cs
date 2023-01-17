@@ -38,13 +38,8 @@ namespace Employee.Data.Repositories
         /// <returns></returns>
         public async Task DeleteAllAsync()
         {
-            EmployeeDbContext dbContext = new EmployeeDbContext();
-            var records = from m in dbContext.Employees select m;
-
-            foreach (var record in records)
-            {
-                dbContext.Employees.Remove(record);
-            }
+           
+            dbContext.Employees.RemoveRange(dbContext.Employees.ToList());
             await dbContext.SaveChangesAsync();
         }
 
@@ -72,9 +67,11 @@ namespace Employee.Data.Repositories
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        public async Task<IQueryable<EmployeeModel>> GetAllAsync(Expression<Func<EmployeeModel, bool>>? expression = null)
+        public async Task<IQueryable<EmployeeModel>> GetAllAsync(Expression<Func<EmployeeModel, bool>>? expression = null, int pageIndex = 1)
         {
-            return expression == null ? dbSet : dbSet.Where(expression);
+            var result = expression == null ? dbSet : dbSet.Where(expression);
+
+            return result.Skip((pageIndex - 1) * 12).Take(12);
         }
 
         /// <summary>

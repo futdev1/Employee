@@ -14,7 +14,7 @@ namespace Employee.Service.Interfaces
 
         Task<EmployeeModel> GetAsync(Expression<Func<EmployeeModel, bool>> expression);
 
-        Task<IQueryable<EmployeeModel>> GetAllAsync(Expression<Func<EmployeeModel, bool>> expression = null);
+        Task<IQueryable<EmployeeModel>> GetAllAsync(Expression<Func<EmployeeModel, bool>>? expression = null, int pageIndex = 0);
 
         Task<EmployeeModel> UpdateAsync(EmployeeModel employee);
 

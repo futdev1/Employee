@@ -12,9 +12,9 @@ namespace Employee.App
     {
         #region private
         private IEmployeeService employeeService;
-
         private IList<EmployeeModel> employees;
         private long EmployeeId;
+        private int limit = 1;
         #endregion
 
         public EmployeeView()
@@ -116,7 +116,7 @@ namespace Employee.App
         //Returns employee data
         private async Task<IList<EmployeeModel>> GetDataEmployee()
         {
-            employees = (await employeeService.GetAllAsync()).ToList();
+            employees = (await employeeService.GetAllAsync(null, limit)).ToList();
 
             return employees;
         }
@@ -130,6 +130,24 @@ namespace Employee.App
             City_txt.Text = employee.CurrentCity;
             Department_txt.Text = employee.Department;
             Gender_ComboBox.Text = employee.GenderType.ToString();
+        }
+
+        private async void Next_btn_Click(object sender, EventArgs e)
+        {
+            limit += 1;
+            employees = (await employeeService.GetAllAsync(null, limit)).ToList();
+            dataGridView1.DataSource = employees;
+        }
+
+        private async void Back_btn_Click(object sender, EventArgs e)
+        {
+            if(limit > 1)
+            {
+                limit -= 1;
+                employees = (await employeeService.GetAllAsync(null, limit)).ToList();
+                dataGridView1.DataSource = employees;
+            }
+            else { MessageBox.Show("Siz birinchi pagedasiz"); }
         }
     }
 }

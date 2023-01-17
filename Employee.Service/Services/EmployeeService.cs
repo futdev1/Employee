@@ -20,6 +20,7 @@ namespace Employee.Service.Services
         {
             repository = new EmployeeRepository();
         }
+
         public async Task<EmployeeModel> CreateAsync(EmployeeModel employee)
         {
             return await repository.CreateAsync(employee);
@@ -35,9 +36,17 @@ namespace Employee.Service.Services
             return repository.DeleteAsync(expression);
         }
 
-        public async Task<IQueryable<EmployeeModel>> GetAllAsync(Expression<Func<EmployeeModel, bool>> expression = null)
+        public async Task<IQueryable<EmployeeModel>?> GetAllAsync(Expression<Func<EmployeeModel, bool>> expression = null, int pageIndex = 0)
         {
-            return await repository.GetAllAsync(expression);
+            if(pageIndex > 0)
+            {
+                return await repository.GetAllAsync(expression, pageIndex);
+            }
+            else
+            {
+                return null;
+            }
+
         }
 
         public async Task<EmployeeModel> GetAsync(Expression<Func<EmployeeModel, bool>> expression)
@@ -49,13 +58,19 @@ namespace Employee.Service.Services
         {
             var result = await repository.GetAsync(p => p.Id == employee.Id);
 
-            result.Id = employee.Id;
-            result.Name = employee.Name;
-            result.CurrentCity = employee.CurrentCity;
-            result.Department = employee.Department;
-            result.GenderType = employee.GenderType;
+            if (result is not null)
+            {
+                result.Id = employee.Id;
+                result.Name = employee.Name;
+                result.CurrentCity = employee.CurrentCity;
+                result.Department = employee.Department;
+                result.GenderType = employee.GenderType;
 
-            return await repository.UpdateAsync(result);
+                return await repository.UpdateAsync(result);
+            }
+            else
+                return null;
+
         }
     }
 }

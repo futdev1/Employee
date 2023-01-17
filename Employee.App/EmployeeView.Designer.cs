@@ -49,6 +49,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.Back_btn = new System.Windows.Forms.Button();
+            this.Next_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource1)).BeginInit();
@@ -131,6 +133,10 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowDrop = true;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -146,7 +152,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(418, 363);
+            this.dataGridView1.Size = new System.Drawing.Size(418, 331);
             this.dataGridView1.TabIndex = 11;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_DoubleClick);
             // 
@@ -253,11 +259,33 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // Back_btn
+            // 
+            this.Back_btn.Location = new System.Drawing.Point(118, 565);
+            this.Back_btn.Name = "Back_btn";
+            this.Back_btn.Size = new System.Drawing.Size(75, 23);
+            this.Back_btn.TabIndex = 17;
+            this.Back_btn.Text = "< Back";
+            this.Back_btn.UseVisualStyleBackColor = true;
+            this.Back_btn.Click += new System.EventHandler(this.Back_btn_Click);
+            // 
+            // Next_btn
+            // 
+            this.Next_btn.Location = new System.Drawing.Point(211, 565);
+            this.Next_btn.Name = "Next_btn";
+            this.Next_btn.Size = new System.Drawing.Size(75, 23);
+            this.Next_btn.TabIndex = 18;
+            this.Next_btn.Text = "Next >";
+            this.Next_btn.UseVisualStyleBackColor = true;
+            this.Next_btn.Click += new System.EventHandler(this.Next_btn_Click);
+            // 
             // EmployeeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(420, 600);
+            this.Controls.Add(this.Next_btn);
+            this.Controls.Add(this.Back_btn);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -304,5 +332,7 @@
         private DataGridViewTextBoxColumn departmentDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn genderTypeDataGridViewTextBoxColumn;
         private Button button1;
+        private Button Back_btn;
+        private Button Next_btn;
     }
 }
