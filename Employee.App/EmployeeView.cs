@@ -128,10 +128,6 @@ namespace Employee.App
         }
         #endregion
 
-        private void EmployeeView_Load(object sender, EventArgs e)
-        {
-            dataGridEmployee.DataSource = GetDataEmployee().Result;
-        }
 
         //Returns employee data
         private async Task<IList<EmployeeModel>> GetDataEmployee()
@@ -140,6 +136,7 @@ namespace Employee.App
 
             return employees;
         }
+
 
         private void dataGridEmployee_DoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -150,6 +147,11 @@ namespace Employee.App
             City_txt.Text = employee.CurrentCity;
             Department_txt.Text = employee.Department;
             Gender_ComboBox.Text = employee.GenderType.ToString();
+        }
+
+        private void EmployeeView_Load(object sender, EventArgs e)
+        {
+            dataGridEmployee.DataSource = GetDataEmployee().Result;
         }
     }
 }
