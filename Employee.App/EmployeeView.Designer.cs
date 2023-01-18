@@ -299,6 +299,8 @@
             this.Controls.Add(this.Department_txt);
             this.Controls.Add(this.City_txt);
             this.Controls.Add(this.Name_txt);
+            this.MaximumSize = new System.Drawing.Size(436, 639);
+            this.MinimumSize = new System.Drawing.Size(436, 639);
             this.Name = "EmployeeView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employee app";

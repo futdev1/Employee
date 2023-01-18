@@ -113,6 +113,11 @@ namespace Employee.App
         {
             limit += 1;
             employees = (await employeeService.GetAllAsync(null, limit)).ToList();
+            if(employees is null)
+            {
+                MessageBox.Show("Tugadi");
+            }
+
             dataGridEmployee.DataSource = employees;
         }
 
