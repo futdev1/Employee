@@ -1,5 +1,4 @@
 ﻿using Employee.Data.IRepositories;
-using Employee.Data.Repositories;
 using Employee.Domain.Entities;
 using Employee.Domain.Enums;
 using Employee.Service.Interfaces;
@@ -43,6 +42,7 @@ namespace Employee.App
 
                     if (employee == null)
                     {
+                        
                         employeeService.CreateAsync(model);
                         MessageBox.Show("Saved!");
                     }   
@@ -67,7 +67,6 @@ namespace Employee.App
                     MessageBox.Show("To'liq kiriting!");
                 }
             }
-
             catch { MessageBox.Show("Malumotlarni to'g'ri kiriting!"); }
         }
 
@@ -84,21 +83,26 @@ namespace Employee.App
 
         private async void Delete_btn_Click(object sender, EventArgs e)
         {
-            EmployeeModel employee = (EmployeeModel)dataGridEmployee.SelectedRows[0].DataBoundItem;
-            if (employee is not null)
+            try
             {
-                bool isDeleted = await employeeService.DeleteAsync(p => p.Id == employee.Id);
-
-                if (isDeleted)
+                EmployeeModel employee = (EmployeeModel)dataGridEmployee.SelectedRows[0].DataBoundItem;
+                if (employee is not null)
                 {
-                    MessageBox.Show($"{employee.Name} Deleted!");
-                    dataGridEmployee.DataSource = GetDataEmployee().Result;
-                }
+                    bool isDeleted = await employeeService.DeleteAsync(p => p.Id == employee.Id);
 
-                else
-                    MessageBox.Show("Error!");
+                    if (isDeleted)
+                    {
+                        MessageBox.Show($"{employee.Name} Deleted!");
+                        dataGridEmployee.DataSource = GetDataEmployee().Result;
+                    }
+
+                    else
+                        MessageBox.Show("Error!");
+                }
+                else { }
             }
-            else { }
+            catch {  }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -145,18 +149,23 @@ namespace Employee.App
 
         private void dataGridEmployee_DoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            EmployeeModel employee = dataGridEmployee.Rows[e.RowIndex].DataBoundItem as EmployeeModel;
+            try
+            {
+                EmployeeModel employee = dataGridEmployee.Rows[e.RowIndex].DataBoundItem as EmployeeModel;
 
-            EmployeeId = employee.Id;
-            Name_txt.Text = employee.Name;
-            City_txt.Text = employee.CurrentCity;
-            Department_txt.Text = employee.Department;
-            Gender_ComboBox.Text = employee.GenderType.ToString();
+                EmployeeId = employee.Id;
+                Name_txt.Text = employee.Name;
+                City_txt.Text = employee.CurrentCity;
+                Department_txt.Text = employee.Department;
+                Gender_ComboBox.Text = employee.GenderType.ToString();
+            }
+            catch { }
         }
 
         private void EmployeeView_Load(object sender, EventArgs e)
         {
             dataGridEmployee.DataSource = GetDataEmployee().Result;
         }
+
     }
 }

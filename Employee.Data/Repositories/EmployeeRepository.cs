@@ -74,7 +74,7 @@ namespace Employee.Data.Repositories
         {
             var result = expression == null ? dbSet : dbSet.Where(expression);
 
-            return result.Skip((pageIndex - 1) * 12).Take(12);
+            return result.Skip((pageIndex - 1) * 30).Take(30);
         }
 
         /// <summary>

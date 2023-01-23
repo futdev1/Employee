@@ -51,9 +51,15 @@
             this.button1 = new System.Windows.Forms.Button();
             this.Back_btn = new System.Windows.Forms.Button();
             this.Next_btn = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource1)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // employeeModelBindingSource
@@ -62,7 +68,7 @@
             // 
             // Name_txt
             // 
-            this.Name_txt.Location = new System.Drawing.Point(141, 33);
+            this.Name_txt.Location = new System.Drawing.Point(140, 19);
             this.Name_txt.Name = "Name_txt";
             this.Name_txt.PlaceholderText = "Abbos";
             this.Name_txt.Size = new System.Drawing.Size(267, 23);
@@ -70,7 +76,7 @@
             // 
             // City_txt
             // 
-            this.City_txt.Location = new System.Drawing.Point(141, 62);
+            this.City_txt.Location = new System.Drawing.Point(140, 52);
             this.City_txt.Name = "City_txt";
             this.City_txt.PlaceholderText = "Tashkent";
             this.City_txt.Size = new System.Drawing.Size(267, 23);
@@ -78,7 +84,7 @@
             // 
             // Department_txt
             // 
-            this.Department_txt.Location = new System.Drawing.Point(141, 91);
+            this.Department_txt.Location = new System.Drawing.Point(140, 90);
             this.Department_txt.Name = "Department_txt";
             this.Department_txt.PlaceholderText = "Development";
             this.Department_txt.Size = new System.Drawing.Size(267, 23);
@@ -92,7 +98,7 @@
             this.Gender_ComboBox.Items.AddRange(new object[] {
             "Male",
             "Female"});
-            this.Gender_ComboBox.Location = new System.Drawing.Point(141, 120);
+            this.Gender_ComboBox.Location = new System.Drawing.Point(140, 128);
             this.Gender_ComboBox.Name = "Gender_ComboBox";
             this.Gender_ComboBox.Size = new System.Drawing.Size(267, 23);
             this.Gender_ComboBox.TabIndex = 7;
@@ -100,7 +106,7 @@
             // Save_btn
             // 
             this.Save_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Save_btn.Location = new System.Drawing.Point(1, 170);
+            this.Save_btn.Location = new System.Drawing.Point(3, 167);
             this.Save_btn.Name = "Save_btn";
             this.Save_btn.Size = new System.Drawing.Size(94, 34);
             this.Save_btn.TabIndex = 8;
@@ -111,7 +117,7 @@
             // Clear_btn
             // 
             this.Clear_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Clear_btn.Location = new System.Drawing.Point(101, 170);
+            this.Clear_btn.Location = new System.Drawing.Point(103, 167);
             this.Clear_btn.Name = "Clear_btn";
             this.Clear_btn.Size = new System.Drawing.Size(104, 34);
             this.Clear_btn.TabIndex = 9;
@@ -122,7 +128,7 @@
             // Delete_btn
             // 
             this.Delete_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Delete_btn.Location = new System.Drawing.Point(211, 170);
+            this.Delete_btn.Location = new System.Drawing.Point(211, 167);
             this.Delete_btn.Name = "Delete_btn";
             this.Delete_btn.Size = new System.Drawing.Size(103, 34);
             this.Delete_btn.TabIndex = 10;
@@ -147,54 +153,55 @@
             this.departmentDataGridViewTextBoxColumn,
             this.genderTypeDataGridViewTextBoxColumn});
             this.dataGridEmployee.DataSource = this.employeeModelBindingSource1;
-            this.dataGridEmployee.Location = new System.Drawing.Point(1, 225);
+            this.dataGridEmployee.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridEmployee.Location = new System.Drawing.Point(0, 0);
             this.dataGridEmployee.MultiSelect = false;
             this.dataGridEmployee.Name = "dataGridEmployee";
             this.dataGridEmployee.ReadOnly = true;
             this.dataGridEmployee.RowTemplate.Height = 25;
-            this.dataGridEmployee.Size = new System.Drawing.Size(418, 331);
+            this.dataGridEmployee.Size = new System.Drawing.Size(420, 336);
             this.dataGridEmployee.TabIndex = 11;
             this.dataGridEmployee.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridEmployee_DoubleClick);
             // 
             // idDataGridViewTextBoxColumn
             // 
+            this.idDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
             this.idDataGridViewTextBoxColumn.HeaderText = "Id";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Width = 35;
             // 
             // nameDataGridViewTextBoxColumn
             // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 95;
             // 
             // currentCityDataGridViewTextBoxColumn
             // 
+            this.currentCityDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.currentCityDataGridViewTextBoxColumn.DataPropertyName = "CurrentCity";
             this.currentCityDataGridViewTextBoxColumn.HeaderText = "City";
             this.currentCityDataGridViewTextBoxColumn.Name = "currentCityDataGridViewTextBoxColumn";
             this.currentCityDataGridViewTextBoxColumn.ReadOnly = true;
-            this.currentCityDataGridViewTextBoxColumn.Width = 90;
             // 
             // departmentDataGridViewTextBoxColumn
             // 
+            this.departmentDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.departmentDataGridViewTextBoxColumn.DataPropertyName = "Department";
             this.departmentDataGridViewTextBoxColumn.HeaderText = "Department";
             this.departmentDataGridViewTextBoxColumn.Name = "departmentDataGridViewTextBoxColumn";
             this.departmentDataGridViewTextBoxColumn.ReadOnly = true;
-            this.departmentDataGridViewTextBoxColumn.Width = 85;
             // 
             // genderTypeDataGridViewTextBoxColumn
             // 
+            this.genderTypeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.genderTypeDataGridViewTextBoxColumn.DataPropertyName = "GenderType";
             this.genderTypeDataGridViewTextBoxColumn.HeaderText = "Gender";
             this.genderTypeDataGridViewTextBoxColumn.Name = "genderTypeDataGridViewTextBoxColumn";
             this.genderTypeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.genderTypeDataGridViewTextBoxColumn.Width = 68;
             // 
             // employeeModelBindingSource1
             // 
@@ -206,7 +213,7 @@
             this.label1.AutoSize = true;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(17, 33);
+            this.label1.Location = new System.Drawing.Point(30, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 21);
             this.label1.TabIndex = 12;
@@ -218,7 +225,7 @@
             this.label2.AutoSize = true;
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(11, 63);
+            this.label2.Location = new System.Drawing.Point(20, 54);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 21);
             this.label2.TabIndex = 13;
@@ -230,7 +237,7 @@
             this.label3.AutoSize = true;
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(12, 92);
+            this.label3.Location = new System.Drawing.Point(20, 92);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(93, 21);
             this.label3.TabIndex = 14;
@@ -242,7 +249,7 @@
             this.label4.AutoSize = true;
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(12, 122);
+            this.label4.Location = new System.Drawing.Point(20, 126);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 21);
             this.label4.TabIndex = 15;
@@ -251,7 +258,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(320, 170);
+            this.button1.Location = new System.Drawing.Point(318, 167);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(99, 34);
             this.button1.TabIndex = 16;
@@ -261,7 +268,8 @@
             // 
             // Back_btn
             // 
-            this.Back_btn.Location = new System.Drawing.Point(118, 565);
+            this.Back_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Back_btn.Location = new System.Drawing.Point(101, 15);
             this.Back_btn.Name = "Back_btn";
             this.Back_btn.Size = new System.Drawing.Size(75, 23);
             this.Back_btn.TabIndex = 17;
@@ -271,7 +279,8 @@
             // 
             // Next_btn
             // 
-            this.Next_btn.Location = new System.Drawing.Point(211, 565);
+            this.Next_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Next_btn.Location = new System.Drawing.Point(239, 15);
             this.Next_btn.Name = "Next_btn";
             this.Next_btn.Size = new System.Drawing.Size(75, 23);
             this.Next_btn.TabIndex = 18;
@@ -279,27 +288,56 @@
             this.Next_btn.UseVisualStyleBackColor = true;
             this.Next_btn.Click += new System.EventHandler(this.Next_btn_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.Back_btn);
+            this.panel1.Controls.Add(this.Next_btn);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 552);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(420, 48);
+            this.panel1.TabIndex = 19;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.dataGridEmployee);
+            this.panel2.Location = new System.Drawing.Point(0, 210);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(420, 336);
+            this.panel2.TabIndex = 20;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.Delete_btn);
+            this.panel3.Controls.Add(this.Clear_btn);
+            this.panel3.Controls.Add(this.Save_btn);
+            this.panel3.Controls.Add(this.Gender_ComboBox);
+            this.panel3.Controls.Add(this.Department_txt);
+            this.panel3.Controls.Add(this.City_txt);
+            this.panel3.Controls.Add(this.Name_txt);
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Controls.Add(this.label3);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.label2);
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(420, 204);
+            this.panel3.TabIndex = 12;
+            // 
             // EmployeeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(420, 600);
-            this.Controls.Add(this.Next_btn);
-            this.Controls.Add(this.Back_btn);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridEmployee);
-            this.Controls.Add(this.Delete_btn);
-            this.Controls.Add(this.Clear_btn);
-            this.Controls.Add(this.Save_btn);
-            this.Controls.Add(this.Gender_ComboBox);
-            this.Controls.Add(this.Department_txt);
-            this.Controls.Add(this.City_txt);
-            this.Controls.Add(this.Name_txt);
-            this.MaximumSize = new System.Drawing.Size(436, 639);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.MinimumSize = new System.Drawing.Size(436, 639);
             this.Name = "EmployeeView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -308,8 +346,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEmployee)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -328,13 +369,16 @@
         private Label label2;
         private Label label3;
         private Label label4;
+        private Button button1;
+        private Button Back_btn;
+        private Button Next_btn;
+        private Panel panel1;
+        private Panel panel2;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn currentCityDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn departmentDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn genderTypeDataGridViewTextBoxColumn;
-        private Button button1;
-        private Button Back_btn;
-        private Button Next_btn;
+        private Panel panel3;
     }
 }
