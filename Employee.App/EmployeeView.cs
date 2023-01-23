@@ -150,6 +150,8 @@ namespace Employee.App
         private void dataGridEmployee_DoubleClick(object sender, DataGridViewCellEventArgs e)
         {
            
+            if(e.RowIndex >= 0)
+            {
                 EmployeeModel employee = dataGridEmployee.Rows[e.RowIndex].DataBoundItem as EmployeeModel;
 
                 EmployeeId = employee.Id;
@@ -157,8 +159,12 @@ namespace Employee.App
                 City_txt.Text = employee.CurrentCity;
                 Department_txt.Text = employee.Department;
                 Gender_ComboBox.Text = employee.GenderType.ToString();
-           
-           
+            }
+
+            else
+            {
+                MessageBox.Show("Bosilmasin");
+            }
         }
 
         private void EmployeeView_Load(object sender, EventArgs e)
