@@ -163,7 +163,7 @@ namespace Employee.App
 
             else
             {
-                MessageBox.Show("Bosilmasin");
+                MessageBox.Show("Error");
             }
         }
 
