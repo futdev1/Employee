@@ -149,8 +149,7 @@ namespace Employee.App
 
         private void dataGridEmployee_DoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
+           
                 EmployeeModel employee = dataGridEmployee.Rows[e.RowIndex].DataBoundItem as EmployeeModel;
 
                 EmployeeId = employee.Id;
@@ -158,8 +157,8 @@ namespace Employee.App
                 City_txt.Text = employee.CurrentCity;
                 Department_txt.Text = employee.Department;
                 Gender_ComboBox.Text = employee.GenderType.ToString();
-            }
-            catch { }
+           
+           
         }
 
         private void EmployeeView_Load(object sender, EventArgs e)
