@@ -16,9 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Employee.Data\Employee.Data.csproj" />
+    <ProjectReference Include="..\Employee.Data\Employee.EFCore.Data.csproj" />
     <ProjectReference Include="..\Employee.Domain\Employee.Domain.csproj" />
-    <ProjectReference Include="..\Employee.Service\Employee.Service.csproj" />
+    <ProjectReference Include="..\Employee.Service\Employee.EFCore.Service.csproj" />
   </ItemGroup>
 
 </Project>

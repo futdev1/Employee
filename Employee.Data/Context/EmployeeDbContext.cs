@@ -1,7 +1,7 @@
 ﻿using Employee.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Employee.Data.Context
+namespace Employee.EFCore.Data.Context
 {
     public class EmployeeDbContext : DbContext
     {
