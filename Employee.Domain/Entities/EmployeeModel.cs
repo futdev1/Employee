@@ -8,6 +8,10 @@ namespace Employee.Domain.Entities
 #pragma warning disable
     public class EmployeeModel
     {
+        public EmployeeModel()
+        {
+
+        }
         public long id { get; set; }
 
         public string name { get; set; }

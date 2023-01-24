@@ -56,9 +56,11 @@
             this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.currentcityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.departmentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gendertypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource2)).BeginInit();
@@ -153,12 +155,12 @@
             this.dataGridEmployee.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridEmployee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn2,
-            this.nameDataGridViewTextBoxColumn2,
-            this.currentcityDataGridViewTextBoxColumn,
+            this.idDataGridViewTextBoxColumn3,
+            this.nameDataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn1,
             this.departmentDataGridViewTextBoxColumn,
-            this.gendertypeDataGridViewTextBoxColumn});
-            this.dataGridEmployee.DataSource = this.employeeModelBindingSource2;
+            this.dataGridViewTextBoxColumn2});
+            this.dataGridEmployee.DataSource = this.employeeModelBindingSource1;
             this.dataGridEmployee.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridEmployee.Location = new System.Drawing.Point(0, 0);
             this.dataGridEmployee.MultiSelect = false;
@@ -329,21 +331,35 @@
             this.idDataGridViewTextBoxColumn2.DataPropertyName = "id";
             this.idDataGridViewTextBoxColumn2.HeaderText = "id";
             this.idDataGridViewTextBoxColumn2.Name = "idDataGridViewTextBoxColumn2";
-            this.idDataGridViewTextBoxColumn2.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn2.Width = 55;
             // 
             // nameDataGridViewTextBoxColumn2
             // 
             this.nameDataGridViewTextBoxColumn2.DataPropertyName = "name";
             this.nameDataGridViewTextBoxColumn2.HeaderText = "name";
             this.nameDataGridViewTextBoxColumn2.Name = "nameDataGridViewTextBoxColumn2";
-            this.nameDataGridViewTextBoxColumn2.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn2.Width = 105;
             // 
-            // currentcityDataGridViewTextBoxColumn
+            // idDataGridViewTextBoxColumn3
             // 
-            this.currentcityDataGridViewTextBoxColumn.DataPropertyName = "current_city";
-            this.currentcityDataGridViewTextBoxColumn.HeaderText = "current_city";
-            this.currentcityDataGridViewTextBoxColumn.Name = "currentcityDataGridViewTextBoxColumn";
-            this.currentcityDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn3.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn3.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn3.Name = "idDataGridViewTextBoxColumn3";
+            this.idDataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn3
+            // 
+            this.nameDataGridViewTextBoxColumn3.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn3.HeaderText = "name";
+            this.nameDataGridViewTextBoxColumn3.Name = "nameDataGridViewTextBoxColumn3";
+            this.nameDataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "current_city";
+            this.dataGridViewTextBoxColumn1.HeaderText = "current_city";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // departmentDataGridViewTextBoxColumn
             // 
@@ -352,12 +368,12 @@
             this.departmentDataGridViewTextBoxColumn.Name = "departmentDataGridViewTextBoxColumn";
             this.departmentDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // gendertypeDataGridViewTextBoxColumn
+            // dataGridViewTextBoxColumn2
             // 
-            this.gendertypeDataGridViewTextBoxColumn.DataPropertyName = "gender_type";
-            this.gendertypeDataGridViewTextBoxColumn.HeaderText = "gender_type";
-            this.gendertypeDataGridViewTextBoxColumn.Name = "gendertypeDataGridViewTextBoxColumn";
-            this.gendertypeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "gender_type";
+            this.dataGridViewTextBoxColumn2.HeaderText = "gender_type";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // EmployeeView
             // 
@@ -412,10 +428,12 @@
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn departmentDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn currentcityDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn departmentDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn gendertypeDataGridViewTextBoxColumn;
     }
 }

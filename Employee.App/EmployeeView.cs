@@ -3,6 +3,7 @@ using Employee.Domain.Enums;
 using Employee.Service.Interfaces;
 using Employee.Service.Services;
 using Employee.ADONET.Data.IRepositories;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Employee.App
 {
@@ -26,48 +27,45 @@ namespace Employee.App
         #region buttons
         private async void Save_btn_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-                if (Name_txt.Text is not "" || Department_txt.Text is not "")
+            if (Name_txt.Text is not "" || Department_txt.Text is not "")
+            {
+                EmployeeModel model = new EmployeeModel()
                 {
-                    EmployeeModel model = new EmployeeModel()
-                    {
-                        id = EmployeeId,
-                        name = Name_txt.Text,
-                        current_city = City_txt.Text,
-                        department = Department_txt.Text,
-                        gender_type = Gender_ComboBox.Text == "Male" ? Gender.Male : Gender.Female
-                    };
+                    id = EmployeeId,
+                    name = Name_txt.Text,
+                    current_city = City_txt.Text,
+                    department = Department_txt.Text,
+                    gender_type = Gender_ComboBox.Text == "Male" ? Gender.Male : Gender.Female
+                };
                     
-                    var employee = await employeeService.GetAsync(p => p.id == model.id);
+                var employee = await employeeService.GetAsync(p => p.id == model.id);
 
-                    if (employee == null)
-                    {
-                        employeeService.CreateAsync(model);
-                        MessageBox.Show("Saved!");
-                    }   
-
-                    else
-                    {
-                        employeeService.UpdateAsync(model);
-                        MessageBox.Show("Updated!");
-                    }
-
-                    #region
-                    Name_txt.Clear();
-                    City_txt.Clear();
-                    Department_txt.Clear();
-
-                    dataGridEmployee.DataSource = GetDataEmployee().Result;
-                    #endregion
-                }
+                if (employee == null)
+                {
+                    employeeService.CreateAsync(model);
+                    MessageBox.Show("Saved!");
+                }   
 
                 else
                 {
-                    MessageBox.Show("To'liq kiriting!");
+                    employeeService.UpdateAsync(model);
+                    MessageBox.Show("Updated!");
+                    EmployeeId = 0;
                 }
-            //}
-            //catch { MessageBox.Show("Malumotlarni to'g'ri kiriting!"); }
+
+                #region
+                Name_txt.Clear();
+                City_txt.Clear();
+                Department_txt.Clear();
+
+                dataGridEmployee.DataSource = GetDataEmployee().Result;
+                #endregion
+            }
+
+            else
+            {
+                MessageBox.Show("To'liq kiriting!");
+            }
         }
 
         private async void Clear_btn_Click(object sender, EventArgs e)
@@ -127,13 +125,15 @@ namespace Employee.App
 
         private async void Back_btn_Click(object sender, EventArgs e)
         {
-            if (limit > 1)
-            {
-                limit -= 1;
-                employees = (await employeeService.GetAllAsync(null, limit)).ToList();
-                dataGridEmployee.DataSource = employees;
-            }
-            else { MessageBox.Show("Siz birinchi pagedasiz"); }
+            //if (limit > 1)
+            //{
+            //    limit -= 1;
+            //    employees = (await employeeService.GetAllAsync(null, limit)).ToList();
+            //    dataGridEmployee.DataSource = employees;
+            //}
+            //else { MessageBox.Show("Siz birinchi pagedasiz"); }
+
+            IList<EmployeeModel> list = (await employeeRepository.GetAllAsync(1, 2)).ToList();
         }
         #endregion
 
