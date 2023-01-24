@@ -4,6 +4,7 @@ using Employee.Service.Interfaces;
 using Employee.Service.Services;
 using Employee.ADONET.Data.IRepositories;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Employee.ADONET.Data.Repositories;
 
 namespace Employee.App
 {
@@ -22,6 +23,7 @@ namespace Employee.App
         {
             InitializeComponent();
             employeeService = new EmployeeService();
+            employeeRepository = new EmployeeRepository();
         }
 
         #region buttons
@@ -133,7 +135,7 @@ namespace Employee.App
             //}
             //else { MessageBox.Show("Siz birinchi pagedasiz"); }
 
-            IList<EmployeeModel> list = (await employeeRepository.GetAllAsync(1, 2)).ToList();
+            employeeRepository.DeleteAsync(2);
         }
         #endregion
 

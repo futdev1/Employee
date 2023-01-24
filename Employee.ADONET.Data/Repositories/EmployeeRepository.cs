@@ -4,37 +4,52 @@ using Employee.Domain.Entities;
 using Employee.Domain.Enums;
 using Npgsql;
 using NpgsqlTypes;
+using System.Data;
 
 namespace Employee.ADONET.Data.Repositories
 {
+#pragma warning disable
     public class EmployeeRepository : IEmployeeRepository
     {
-        NpgsqlConnection connection;
-
-        public EmployeeRepository()
+        public void CreateAsync(EmployeeModel employee)
         {
-            connection = new NpgsqlConnection(Constants.CONNECTION_STRING);
+            using (var connection = new NpgsqlConnection(Constants.CONNECTION_STRING))
+            {
+                var command = new NpgsqlCommand("public.add_employee", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_name", NpgsqlDbType.Varchar).Value = employee.name;
+                command.Parameters.Add("_current_city", NpgsqlDbType.Varchar).Value = employee.current_city;
+                command.Parameters.Add("_department", NpgsqlDbType.Varchar).Value = employee.department;
+                command.Parameters.Add("_gender_type", NpgsqlDbType.Integer).Value = employee.gender_type == Gender.Male ? 0 : 1;
+            }
         }
 
-        public Task CreateAsync(EmployeeModel employee)
+        public void DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            using (var connection = new NpgsqlConnection(Constants.CONNECTION_STRING))
+            {
+                var command = new NpgsqlCommand("public.delete_employee", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
 
-        public async Task<IList<EmployeeModel>> GetAllAsync(int from, int to)
+        public IList<EmployeeModel> GetAllAsync(int from, int to)
         {
             IList<EmployeeModel> employees = new List<EmployeeModel>();
 
             using (var connection = new NpgsqlConnection(Constants.CONNECTION_STRING))
             {
-                var command = new NpgsqlCommand("public.getlimited", connection);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.Parameters.Add("_from", NpgsqlDbType.Integer).Value = DBNull.Value;
-                command.Parameters.Add("_to", NpgsqlDbType.Integer).Value = DBNull.Value;
+                var command = new NpgsqlCommand("getlimited", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_to", NpgsqlDbType.Integer).Value = to;
+                command.Parameters.Add("_from", NpgsqlDbType.Integer).Value = from;
 
-                await connection.OpenAsync();
+                connection.Open();
 
-                using (NpgsqlDataReader? reader = command.ExecuteReader())
+                using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -51,6 +66,16 @@ namespace Employee.ADONET.Data.Repositories
             }
 
             return employees;
+        }
+
+        public Task<EmployeeModel> GetAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateAsync(EmployeeModel employee)
+        {
+            throw new NotImplementedException();
         }
     }
 }
