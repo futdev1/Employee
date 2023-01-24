@@ -1,8 +1,8 @@
-﻿using Employee.Data.IRepositories;
-using Employee.Domain.Entities;
+﻿using Employee.Domain.Entities;
 using Employee.Domain.Enums;
 using Employee.Service.Interfaces;
 using Employee.Service.Services;
+using Employee.ADONET.Data.IRepositories;
 
 namespace Employee.App
 {
@@ -11,6 +11,7 @@ namespace Employee.App
     {
         #region private
         private IEmployeeService employeeService;
+        private IEmployeeRepository employeeRepository;
         private IList<EmployeeModel> employees;
         private long EmployeeId;
         private int limit = 1;
@@ -25,24 +26,23 @@ namespace Employee.App
         #region buttons
         private async void Save_btn_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 if (Name_txt.Text is not "" || Department_txt.Text is not "")
                 {
                     EmployeeModel model = new EmployeeModel()
                     {
-                        Id = EmployeeId,
-                        Name = Name_txt.Text,
-                        CurrentCity = City_txt.Text,
-                        Department = Department_txt.Text,
-                        GenderType = Gender_ComboBox.Text == "Male" ? Gender.Male : Gender.Female
+                        id = EmployeeId,
+                        name = Name_txt.Text,
+                        current_city = City_txt.Text,
+                        department = Department_txt.Text,
+                        gender_type = Gender_ComboBox.Text == "Male" ? Gender.Male : Gender.Female
                     };
                     
-                    var employee = await employeeService.GetAsync(p => p.Id == model.Id);
+                    var employee = await employeeService.GetAsync(p => p.id == model.id);
 
                     if (employee == null)
                     {
-                        
                         employeeService.CreateAsync(model);
                         MessageBox.Show("Saved!");
                     }   
@@ -66,8 +66,8 @@ namespace Employee.App
                 {
                     MessageBox.Show("To'liq kiriting!");
                 }
-            }
-            catch { MessageBox.Show("Malumotlarni to'g'ri kiriting!"); }
+            //}
+            //catch { MessageBox.Show("Malumotlarni to'g'ri kiriting!"); }
         }
 
         private async void Clear_btn_Click(object sender, EventArgs e)
@@ -88,11 +88,11 @@ namespace Employee.App
                 EmployeeModel employee = (EmployeeModel)dataGridEmployee.SelectedRows[0].DataBoundItem;
                 if (employee is not null)
                 {
-                    bool isDeleted = await employeeService.DeleteAsync(p => p.Id == employee.Id);
+                    bool isDeleted = await employeeService.DeleteAsync(p => p.id == employee.id);
 
                     if (isDeleted)
                     {
-                        MessageBox.Show($"{employee.Name} Deleted!");
+                        MessageBox.Show($"{employee.name} Deleted!");
                         dataGridEmployee.DataSource = GetDataEmployee().Result;
                     }
 
@@ -154,11 +154,11 @@ namespace Employee.App
             {
                 EmployeeModel employee = dataGridEmployee.Rows[e.RowIndex].DataBoundItem as EmployeeModel;
 
-                EmployeeId = employee.Id;
-                Name_txt.Text = employee.Name;
-                City_txt.Text = employee.CurrentCity;
-                Department_txt.Text = employee.Department;
-                Gender_ComboBox.Text = employee.GenderType.ToString();
+                EmployeeId = employee.id;
+                Name_txt.Text = employee.name;
+                City_txt.Text = employee.current_city;
+                Department_txt.Text = employee.department;
+                Gender_ComboBox.Text = employee.gender_type.ToString();
             }
 
             else

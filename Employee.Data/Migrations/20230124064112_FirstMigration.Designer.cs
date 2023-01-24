@@ -8,10 +8,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Employee.Data.Migrations
+namespace Employee.EFCore.Data.Migrations
 {
     [DbContext(typeof(EmployeeDbContext))]
-    [Migration("20230116065544_FirstMigration")]
+    [Migration("20230124064112_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -26,28 +26,28 @@ namespace Employee.Data.Migrations
 
             modelBuilder.Entity("Employee.Domain.Entities.EmployeeModel", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<long>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("id"));
 
-                    b.Property<string>("CurrentCity")
+                    b.Property<string>("current_city")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Department")
+                    b.Property<string>("department")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("GenderType")
+                    b.Property<int>("gender_type")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("Employees");
                 });

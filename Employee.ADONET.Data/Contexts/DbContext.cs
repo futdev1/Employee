@@ -17,28 +17,7 @@ namespace Employee.ADONET.Data.Contexts
         public DbContext()
         {
             connection = new NpgsqlConnection(Constants.CONNECTION_STRING);
+            connection.Open();
         }
-
-        public async Task<NpgsqlDataReader> ConnectionAsync(string query)
-        {
-            NpgsqlCommand command = new NpgsqlCommand(query, connection);
-
-            if (connection.State == ConnectionState.Open)
-                connection.Close();
-
-            else
-            {
-                connection.Open();
-
-                if (query.Contains("SELECT"))
-                    return await command.ExecuteReaderAsync();
-                else
-                    await command.ExecuteNonQueryAsync();
-
-                connection.Close();
-            }
-            return null;
-        }
-        
     }
 }

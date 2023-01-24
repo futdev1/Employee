@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Employee.Data.Migrations
+namespace Employee.EFCore.Data.Migrations
 {
     /// <inheritdoc />
     public partial class FirstMigration : Migration
@@ -15,16 +15,16 @@ namespace Employee.Data.Migrations
                 name: "Employees",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    CurrentCity = table.Column<string>(type: "text", nullable: false),
-                    Department = table.Column<string>(type: "text", nullable: false),
-                    GenderType = table.Column<int>(type: "integer", nullable: false)
+                    name = table.Column<string>(type: "text", nullable: false),
+                    currentcity = table.Column<string>(name: "current_city", type: "text", nullable: false),
+                    department = table.Column<string>(type: "text", nullable: false),
+                    gendertype = table.Column<int>(name: "gender_type", type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employees", x => x.Id);
+                    table.PrimaryKey("PK_Employees", x => x.id);
                 });
         }
 

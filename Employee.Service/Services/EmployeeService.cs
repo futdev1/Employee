@@ -56,15 +56,15 @@ namespace Employee.Service.Services
 
         public async Task<EmployeeModel> UpdateAsync(EmployeeModel employee)
         {
-            var result = await repository.GetAsync(p => p.Id == employee.Id);
+            var result = await repository.GetAsync(p => p.id == employee.id);
 
             if (result is not null)
             {
-                result.Id = employee.Id;
-                result.Name = employee.Name;
-                result.CurrentCity = employee.CurrentCity;
-                result.Department = employee.Department;
-                result.GenderType = employee.GenderType;
+                result.id = employee.id;
+                result.name = employee.name;
+                result.current_city = employee.current_city;
+                result.department = employee.department;
+                result.gender_type = employee.gender_type;
 
                 return await repository.UpdateAsync(result);
             }
