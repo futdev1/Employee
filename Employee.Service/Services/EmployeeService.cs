@@ -2,13 +2,7 @@
 using Employee.Data.Repositories;
 using Employee.Domain.Entities;
 using Employee.Service.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Employee.Service.Services
 {
@@ -38,7 +32,7 @@ namespace Employee.Service.Services
 
         public async Task<IQueryable<EmployeeModel>?> GetAllAsync(Expression<Func<EmployeeModel, bool>> expression = null, int pageIndex = 0)
         {
-            if(pageIndex > 0)
+            if (pageIndex > 0)
             {
                 return await repository.GetAllAsync(expression, pageIndex);
             }

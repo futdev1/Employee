@@ -1,6 +1,6 @@
-﻿using Employee.EFCore.Data.Context;
-using Employee.Data.IRepositories;
+﻿using Employee.Data.IRepositories;
 using Employee.Domain.Entities;
+using Employee.EFCore.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -41,7 +41,7 @@ namespace Employee.Data.Repositories
         /// <returns></returns>
         public async Task DeleteAllAsync()
         {
-           
+
             dbContext.Employees.RemoveRange(dbContext.Employees.ToList());
             await dbContext.SaveChangesAsync();
         }

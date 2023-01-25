@@ -38,7 +38,7 @@ namespace Employee.ADONET.Data.Repositories
             }
         }
 
-        public IList<EmployeeModel> GetAllAsync(int from, int to)
+        public async Task<IList<EmployeeModel>> GetAllAsync(int from, int to)
         {
             IList<EmployeeModel> employees = new List<EmployeeModel>();
 
@@ -49,7 +49,7 @@ namespace Employee.ADONET.Data.Repositories
                 command.Parameters.Add("_to", NpgsqlDbType.Integer).Value = to;
                 command.Parameters.Add("_from", NpgsqlDbType.Integer).Value = from;
 
-                connection.Open();
+                await connection.OpenAsync();
 
                 using (var reader = command.ExecuteReader())
                 {
@@ -70,9 +70,35 @@ namespace Employee.ADONET.Data.Repositories
             return employees;
         }
 
-        public Task<EmployeeModel> GetAsync(int id)
+        public async Task<IList<EmployeeModel>> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            IList<EmployeeModel> employees = new List<EmployeeModel>();
+
+            using (var connection = new NpgsqlConnection(Constants.CONNECTION_STRING))
+            {
+                var command = new NpgsqlCommand("getoneemployee", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+
+                await connection.OpenAsync();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        employees.Add(new EmployeeModel()
+                        {
+                            id = reader.GetInt32(0),
+                            name = reader.GetString(1),
+                            current_city = reader.GetString(2),
+                            department = reader.GetString(3),
+                            gender_type = reader.GetInt32(4) == 0 ? Gender.Male : Gender.Female
+                        });
+                    }
+                }
+            }
+
+            return employees;
         }
 
         public Task UpdateAsync(EmployeeModel employee)

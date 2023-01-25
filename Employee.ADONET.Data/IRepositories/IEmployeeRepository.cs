@@ -7,9 +7,9 @@ namespace Employee.ADONET.Data.IRepositories
     {
         Task CreateAsync(EmployeeModel employee);
 
-       IList<EmployeeModel> GetAllAsync(int from, int to);
+        Task<IList<EmployeeModel>> GetAllAsync(int from, int to);
 
-        Task<EmployeeModel> GetAsync(int id);
+        Task<IList<EmployeeModel>> GetAsync(int id);
 
         Task UpdateAsync(EmployeeModel employee);
 

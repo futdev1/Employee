@@ -1,10 +1,9 @@
-﻿using Employee.Domain.Entities;
+﻿using Employee.ADONET.Data.IRepositories;
+using Employee.ADONET.Data.Repositories;
+using Employee.Domain.Entities;
 using Employee.Domain.Enums;
 using Employee.Service.Interfaces;
 using Employee.Service.Services;
-using Employee.ADONET.Data.IRepositories;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Employee.ADONET.Data.Repositories;
 
 namespace Employee.App
 {
@@ -39,14 +38,14 @@ namespace Employee.App
                     department = Department_txt.Text,
                     gender_type = Gender_ComboBox.Text == "Male" ? Gender.Male : Gender.Female
                 };
-                    
-                var employee = await employeeService.GetAsync(p => p.id == model.id);
+
+                var employee = await employeeRepository.GetAsync((int)model.id);
 
                 if (employee == null)
                 {
                     await employeeRepository.CreateAsync(model);
                     MessageBox.Show("Saved!");
-                }   
+                }
 
                 else
                 {
@@ -96,7 +95,7 @@ namespace Employee.App
                 }
                 else { }
             }
-            catch {  }
+            catch { }
 
         }
 
@@ -112,7 +111,7 @@ namespace Employee.App
         {
             limit += 1;
             employees = (await employeeService.GetAllAsync(null, limit)).ToList();
-            if(employees is null)
+            if (employees is null)
             {
                 MessageBox.Show("Tugadi");
             }
@@ -130,7 +129,7 @@ namespace Employee.App
             //}
             //else { MessageBox.Show("Siz birinchi pagedasiz"); }
 
-            employeeRepository.DeleteAsync(2);
+            IList<EmployeeModel> employees = await employeeRepository.GetAllAsync(1, 2);
         }
         #endregion
 
@@ -146,8 +145,8 @@ namespace Employee.App
 
         private void dataGridEmployee_DoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-           
-            if(e.RowIndex >= 0)
+
+            if (e.RowIndex >= 0)
             {
                 EmployeeModel employee = dataGridEmployee.Rows[e.RowIndex].DataBoundItem as EmployeeModel;
 
