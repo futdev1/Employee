@@ -44,7 +44,7 @@ namespace Employee.App
 
                 if (employee == null)
                 {
-                    employeeService.CreateAsync(model);
+                    await employeeRepository.CreateAsync(model);
                     MessageBox.Show("Saved!");
                 }   
 
@@ -88,16 +88,11 @@ namespace Employee.App
                 EmployeeModel employee = (EmployeeModel)dataGridEmployee.SelectedRows[0].DataBoundItem;
                 if (employee is not null)
                 {
-                    bool isDeleted = await employeeService.DeleteAsync(p => p.id == employee.id);
+                    employeeRepository.DeleteAsync((int)employee.id);
 
-                    if (isDeleted)
-                    {
-                        MessageBox.Show($"{employee.name} Deleted!");
-                        dataGridEmployee.DataSource = GetDataEmployee().Result;
-                    }
+                    MessageBox.Show($"{employee.name} Deleted!");
+                    dataGridEmployee.DataSource = GetDataEmployee().Result;
 
-                    else
-                        MessageBox.Show("Error!");
                 }
                 else { }
             }

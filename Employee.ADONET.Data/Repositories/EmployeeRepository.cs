@@ -11,7 +11,7 @@ namespace Employee.ADONET.Data.Repositories
 #pragma warning disable
     public class EmployeeRepository : IEmployeeRepository
     {
-        public void CreateAsync(EmployeeModel employee)
+        public async Task CreateAsync(EmployeeModel employee)
         {
             using (var connection = new NpgsqlConnection(Constants.CONNECTION_STRING))
             {
@@ -21,10 +21,12 @@ namespace Employee.ADONET.Data.Repositories
                 command.Parameters.Add("_current_city", NpgsqlDbType.Varchar).Value = employee.current_city;
                 command.Parameters.Add("_department", NpgsqlDbType.Varchar).Value = employee.department;
                 command.Parameters.Add("_gender_type", NpgsqlDbType.Integer).Value = employee.gender_type == Gender.Male ? 0 : 1;
+                connection.OpenAsync();
+                await command.ExecuteNonQueryAsync();
             }
         }
 
-        public void DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
             using (var connection = new NpgsqlConnection(Constants.CONNECTION_STRING))
             {
@@ -32,7 +34,7 @@ namespace Employee.ADONET.Data.Repositories
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
                 connection.Open();
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync();
             }
         }
 
@@ -73,7 +75,7 @@ namespace Employee.ADONET.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public void UpdateAsync(EmployeeModel employee)
+        public Task UpdateAsync(EmployeeModel employee)
         {
             throw new NotImplementedException();
         }

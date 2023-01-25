@@ -5,15 +5,15 @@ namespace Employee.ADONET.Data.IRepositories
 {
     public interface IEmployeeRepository
     {
-        void CreateAsync(EmployeeModel employee);
+        Task CreateAsync(EmployeeModel employee);
 
        IList<EmployeeModel> GetAllAsync(int from, int to);
 
         Task<EmployeeModel> GetAsync(int id);
 
-        void UpdateAsync(EmployeeModel employee);
+        Task UpdateAsync(EmployeeModel employee);
 
-        void DeleteAsync(int id);
+        Task DeleteAsync(int id);
 
     }
 }
