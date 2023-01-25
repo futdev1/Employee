@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Employee.ADONET.Data\Employee.ADONET.Data.csproj" />
+    <ProjectReference Include="..\Employee.ADONET.Service\Employee.ADONET.Service.csproj" />
     <ProjectReference Include="..\Employee.Data\Employee.EFCore.Data.csproj" />
     <ProjectReference Include="..\Employee.Domain\Employee.Domain.csproj" />
     <ProjectReference Include="..\Employee.Service\Employee.EFCore.Service.csproj" />

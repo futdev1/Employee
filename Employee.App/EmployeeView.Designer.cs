@@ -38,8 +38,13 @@
             this.Clear_btn = new System.Windows.Forms.Button();
             this.Delete_btn = new System.Windows.Forms.Button();
             this.dataGridEmployee = new System.Windows.Forms.DataGridView();
-            this.employeeModelBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.idDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.departmentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.employeeModelBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.employeeModelBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -56,18 +61,15 @@
             this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.departmentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEmployee)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource2)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // employeeModelBindingSource
@@ -114,9 +116,10 @@
             // Save_btn
             // 
             this.Save_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Save_btn.Location = new System.Drawing.Point(3, 167);
+            this.Save_btn.Location = new System.Drawing.Point(6, 3);
+            this.Save_btn.Margin = new System.Windows.Forms.Padding(6, 3, 3, 3);
             this.Save_btn.Name = "Save_btn";
-            this.Save_btn.Size = new System.Drawing.Size(94, 34);
+            this.Save_btn.Size = new System.Drawing.Size(90, 34);
             this.Save_btn.TabIndex = 8;
             this.Save_btn.Text = "Save";
             this.Save_btn.UseVisualStyleBackColor = true;
@@ -125,9 +128,9 @@
             // Clear_btn
             // 
             this.Clear_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Clear_btn.Location = new System.Drawing.Point(103, 167);
+            this.Clear_btn.Location = new System.Drawing.Point(102, 3);
             this.Clear_btn.Name = "Clear_btn";
-            this.Clear_btn.Size = new System.Drawing.Size(104, 34);
+            this.Clear_btn.Size = new System.Drawing.Size(85, 34);
             this.Clear_btn.TabIndex = 9;
             this.Clear_btn.Text = "Delete all";
             this.Clear_btn.UseVisualStyleBackColor = true;
@@ -136,7 +139,7 @@
             // Delete_btn
             // 
             this.Delete_btn.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Delete_btn.Location = new System.Drawing.Point(211, 167);
+            this.Delete_btn.Location = new System.Drawing.Point(193, 3);
             this.Delete_btn.Name = "Delete_btn";
             this.Delete_btn.Size = new System.Drawing.Size(103, 34);
             this.Delete_btn.TabIndex = 10;
@@ -171,13 +174,53 @@
             this.dataGridEmployee.TabIndex = 11;
             this.dataGridEmployee.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridEmployee_DoubleClick);
             // 
-            // employeeModelBindingSource2
+            // idDataGridViewTextBoxColumn3
             // 
-            this.employeeModelBindingSource2.DataSource = typeof(Employee.Domain.Entities.EmployeeModel);
+            this.idDataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.idDataGridViewTextBoxColumn3.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn3.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn3.Name = "idDataGridViewTextBoxColumn3";
+            this.idDataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn3
+            // 
+            this.nameDataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn3.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn3.HeaderText = "name";
+            this.nameDataGridViewTextBoxColumn3.Name = "nameDataGridViewTextBoxColumn3";
+            this.nameDataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "current_city";
+            this.dataGridViewTextBoxColumn1.HeaderText = "current_city";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // departmentDataGridViewTextBoxColumn
+            // 
+            this.departmentDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.departmentDataGridViewTextBoxColumn.DataPropertyName = "department";
+            this.departmentDataGridViewTextBoxColumn.HeaderText = "department";
+            this.departmentDataGridViewTextBoxColumn.Name = "departmentDataGridViewTextBoxColumn";
+            this.departmentDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "gender_type";
+            this.dataGridViewTextBoxColumn2.HeaderText = "gender_type";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // employeeModelBindingSource1
             // 
             this.employeeModelBindingSource1.DataSource = typeof(Employee.Domain.Entities.EmployeeModel);
+            // 
+            // employeeModelBindingSource2
+            // 
+            this.employeeModelBindingSource2.DataSource = typeof(Employee.Domain.Entities.EmployeeModel);
             // 
             // label1
             // 
@@ -229,10 +272,11 @@
             // 
             // button1
             // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(318, 167);
+            this.button1.Location = new System.Drawing.Point(302, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(99, 34);
+            this.button1.Size = new System.Drawing.Size(108, 34);
             this.button1.TabIndex = 16;
             this.button1.Text = "Clear";
             this.button1.UseVisualStyleBackColor = true;
@@ -285,10 +329,6 @@
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.Controls.Add(this.button1);
-            this.panel3.Controls.Add(this.Delete_btn);
-            this.panel3.Controls.Add(this.Clear_btn);
-            this.panel3.Controls.Add(this.Save_btn);
             this.panel3.Controls.Add(this.Gender_ComboBox);
             this.panel3.Controls.Add(this.Department_txt);
             this.panel3.Controls.Add(this.City_txt);
@@ -299,7 +339,7 @@
             this.panel3.Controls.Add(this.label2);
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(420, 204);
+            this.panel3.Size = new System.Drawing.Size(420, 159);
             this.panel3.TabIndex = 12;
             // 
             // idDataGridViewTextBoxColumn
@@ -340,46 +380,23 @@
             this.nameDataGridViewTextBoxColumn2.Name = "nameDataGridViewTextBoxColumn2";
             this.nameDataGridViewTextBoxColumn2.Width = 105;
             // 
-            // idDataGridViewTextBoxColumn3
+            // flowLayoutPanel1
             // 
-            this.idDataGridViewTextBoxColumn3.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn3.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn3.Name = "idDataGridViewTextBoxColumn3";
-            this.idDataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn3
-            // 
-            this.nameDataGridViewTextBoxColumn3.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn3.HeaderText = "name";
-            this.nameDataGridViewTextBoxColumn3.Name = "nameDataGridViewTextBoxColumn3";
-            this.nameDataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "current_city";
-            this.dataGridViewTextBoxColumn1.HeaderText = "current_city";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // departmentDataGridViewTextBoxColumn
-            // 
-            this.departmentDataGridViewTextBoxColumn.DataPropertyName = "department";
-            this.departmentDataGridViewTextBoxColumn.HeaderText = "department";
-            this.departmentDataGridViewTextBoxColumn.Name = "departmentDataGridViewTextBoxColumn";
-            this.departmentDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "gender_type";
-            this.dataGridViewTextBoxColumn2.HeaderText = "gender_type";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.flowLayoutPanel1.Controls.Add(this.Save_btn);
+            this.flowLayoutPanel1.Controls.Add(this.Clear_btn);
+            this.flowLayoutPanel1.Controls.Add(this.Delete_btn);
+            this.flowLayoutPanel1.Controls.Add(this.button1);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 165);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(417, 39);
+            this.flowLayoutPanel1.TabIndex = 21;
             // 
             // EmployeeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(420, 600);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -390,12 +407,13 @@
             this.Load += new System.EventHandler(this.EmployeeView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEmployee)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeeModelBindingSource2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -428,12 +446,13 @@
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn3;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn3;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn departmentDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn2;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }

@@ -1,9 +1,8 @@
-﻿
-using Employee.Domain.Entities;
+﻿using Employee.Domain.Entities;
 
-namespace Employee.ADONET.Data.IRepositories
+namespace Employee.ADONET.Service.Interfaces
 {
-    public interface IEmployeeRepository
+    public interface IEmployeeService
     {
         Task CreateAsync(EmployeeModel employee);
 

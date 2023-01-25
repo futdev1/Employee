@@ -11,8 +11,8 @@ namespace Employee.App
     public partial class EmployeeView : Form
     {
         #region private
-        private IEmployeeService employeeService;
-        private IEmployeeRepository employeeRepository;
+        private Employee.Service.Interfaces.IEmployeeService employeeServiceEF;
+        private Employee.ADONET.Service.Interfaces.IEmployeeService employeeServiceADO;
         private IList<EmployeeModel> employees;
         private long EmployeeId;
         private int limit = 1;
@@ -21,9 +21,10 @@ namespace Employee.App
         public EmployeeView()
         {
             InitializeComponent();
-            employeeService = new EmployeeService();
-            employeeRepository = new EmployeeRepository();
+            employeeServiceEF = new Employee.Service.Services.EmployeeService();
+            employeeServiceADO = new Employee.ADONET.Service.Services.EmployeeService();
         }
+
 
         #region buttons
         private async void Save_btn_Click(object sender, EventArgs e)
@@ -39,17 +40,17 @@ namespace Employee.App
                     gender_type = Gender_ComboBox.Text == "Male" ? Gender.Male : Gender.Female
                 };
 
-                var employee = await employeeRepository.GetAsync((int)model.id);
+                var employee = await employeeServiceEF.GetAsync(p => p.id == model.id);
 
                 if (employee == null)
                 {
-                    await employeeRepository.CreateAsync(model);
+                    await employeeServiceADO.CreateAsync(model);
                     MessageBox.Show("Saved!");
                 }
 
                 else
                 {
-                    employeeService.UpdateAsync(model);
+                    employeeServiceEF.UpdateAsync(model);
                     MessageBox.Show("Updated!");
                     EmployeeId = 0;
                 }
@@ -73,7 +74,7 @@ namespace Employee.App
         {
             try
             {
-                await employeeService.DeleteAllAsync();
+                await employeeServiceADO.DeleteAllAsync();
                 MessageBox.Show("All Deleted !!!");
                 dataGridEmployee.DataSource = GetDataEmployee().Result;
             }
@@ -87,15 +88,14 @@ namespace Employee.App
                 EmployeeModel employee = (EmployeeModel)dataGridEmployee.SelectedRows[0].DataBoundItem;
                 if (employee is not null)
                 {
-                    employeeRepository.DeleteAsync((int)employee.id);
+                    employeeServiceADO.DeleteAsync((int)employee.id);
 
                     MessageBox.Show($"{employee.name} Deleted!");
                     dataGridEmployee.DataSource = GetDataEmployee().Result;
 
                 }
                 else { }
-            }
-            catch { }
+            } catch { }
 
         }
 
@@ -110,7 +110,7 @@ namespace Employee.App
         private async void Next_btn_Click(object sender, EventArgs e)
         {
             limit += 1;
-            employees = (await employeeService.GetAllAsync(null, limit)).ToList();
+            employees = (await employeeServiceEF.GetAllAsync(null, limit)).ToList();
             if (employees is null)
             {
                 MessageBox.Show("Tugadi");
@@ -121,15 +121,15 @@ namespace Employee.App
 
         private async void Back_btn_Click(object sender, EventArgs e)
         {
-            //if (limit > 1)
-            //{
-            //    limit -= 1;
-            //    employees = (await employeeService.GetAllAsync(null, limit)).ToList();
-            //    dataGridEmployee.DataSource = employees;
-            //}
-            //else { MessageBox.Show("Siz birinchi pagedasiz"); }
+            if (limit > 1)
+            {
+                limit -= 1;
+                employees = (await employeeServiceEF.GetAllAsync(null, limit)).ToList();
+                dataGridEmployee.DataSource = employees;
+            }
+            else { MessageBox.Show("Siz birinchi pagedasiz"); }
 
-            IList<EmployeeModel> employees = await employeeRepository.GetAllAsync(1, 2);
+            //IList<EmployeeModel> employees = await employeeServiceADO.GetAllAsync(1, 2);
         }
         #endregion
 
@@ -137,7 +137,7 @@ namespace Employee.App
         //Returns employee data
         private async Task<IList<EmployeeModel>> GetDataEmployee()
         {
-            employees = (await employeeService.GetAllAsync(null, limit)).ToList();
+            employees = (await employeeServiceEF.GetAllAsync(null, limit)).ToList();
 
             return employees;
         }
@@ -159,7 +159,7 @@ namespace Employee.App
 
             else
             {
-                MessageBox.Show("Error");
+
             }
         }
 

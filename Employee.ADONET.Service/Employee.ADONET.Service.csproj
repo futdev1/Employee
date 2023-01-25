@@ -8,7 +8,11 @@
 
   <ItemGroup>
     <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Employee.ADONET.Data\Employee.ADONET.Data.csproj" />
+    <ProjectReference Include="..\Employee.Domain\Employee.Domain.csproj" />
   </ItemGroup>
 
 </Project>

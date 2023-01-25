@@ -26,6 +26,17 @@ namespace Employee.ADONET.Data.Repositories
             }
         }
 
+        public async Task DeleteAllAsync()
+        {
+            using (var connection = new NpgsqlConnection(Constants.CONNECTION_STRING))
+            {
+                var command = new NpgsqlCommand("public.delete_all", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                connection.OpenAsync();
+                await command.ExecuteNonQueryAsync();
+            }
+        }
+
         public async Task DeleteAsync(int id)
         {
             using (var connection = new NpgsqlConnection(Constants.CONNECTION_STRING))
