@@ -40,7 +40,7 @@ namespace Employee.App
                     gender_type = Gender_ComboBox.Text == "Male" ? Gender.Male : Gender.Female
                 };
 
-                var employee = await employeeServiceEF.GetAsync(p => p.id == model.id);
+                var employee = await employeeServiceADO.GetAsync((int)model.id);
 
                 if (employee == null)
                 {
@@ -50,7 +50,7 @@ namespace Employee.App
 
                 else
                 {
-                    employeeServiceEF.UpdateAsync(model);
+                    employeeServiceADO.UpdateAsync(model);
                     MessageBox.Show("Updated!");
                     EmployeeId = 0;
                 }
@@ -60,7 +60,7 @@ namespace Employee.App
                 City_txt.Clear();
                 Department_txt.Clear();
 
-                dataGridEmployee.DataSource = GetDataEmployee().Result;
+                dataGridEmployee.DataSource = await employeeServiceADO.GetAllAsync(30, 1);
                 #endregion
             }
 
@@ -76,7 +76,7 @@ namespace Employee.App
             {
                 await employeeServiceADO.DeleteAllAsync();
                 MessageBox.Show("All Deleted !!!");
-                dataGridEmployee.DataSource = GetDataEmployee().Result;
+                dataGridEmployee.DataSource = await employeeServiceADO.GetAllAsync(30, 1);
             }
             catch { MessageBox.Show("Error"); }
         }
@@ -91,7 +91,7 @@ namespace Employee.App
                     employeeServiceADO.DeleteAsync((int)employee.id);
 
                     MessageBox.Show($"{employee.name} Deleted!");
-                    dataGridEmployee.DataSource = GetDataEmployee().Result;
+                    dataGridEmployee.DataSource = await employeeServiceADO.GetAllAsync(30, 1);
 
                 }
                 else { }
@@ -128,20 +128,11 @@ namespace Employee.App
                 dataGridEmployee.DataSource = employees;
             }
             else { MessageBox.Show("Siz birinchi pagedasiz"); }
-
-            //IList<EmployeeModel> employees = await employeeServiceADO.GetAllAsync(1, 2);
         }
         #endregion
 
 
         //Returns employee data
-        private async Task<IList<EmployeeModel>> GetDataEmployee()
-        {
-            employees = (await employeeServiceEF.GetAllAsync(null, limit)).ToList();
-
-            return employees;
-        }
-
 
         private void dataGridEmployee_DoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -163,9 +154,9 @@ namespace Employee.App
             }
         }
 
-        private void EmployeeView_Load(object sender, EventArgs e)
+        private async void EmployeeView_Load(object sender, EventArgs e)
         {
-            dataGridEmployee.DataSource = GetDataEmployee().Result;
+            dataGridEmployee.DataSource = (await employeeServiceEF.GetAllAsync(null, limit)).ToList();
         }
 
     }

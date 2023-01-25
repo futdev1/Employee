@@ -40,7 +40,21 @@ namespace Employee.ADONET.Service.Services
 
         public async Task UpdateAsync(EmployeeModel employee)
         {
-            await employeeRepository.UpdateAsync(employee);
+            var result = await employeeRepository.GetAsync((int)employee.id);
+
+            EmployeeModel model = result[0];
+
+            if (result[0] is not null)
+            {
+                model.id = employee.id;
+                model.name = employee.name;
+                model.current_city = employee.current_city;
+                model.department = employee.department;
+                model.gender_type = employee.gender_type;
+
+                await employeeRepository.UpdateAsync(model);
+            }
+            else { }
         }
     }
 }

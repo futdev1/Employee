@@ -55,10 +55,10 @@ namespace Employee.ADONET.Data.Repositories
 
             using (var connection = new NpgsqlConnection(Constants.CONNECTION_STRING))
             {
-                var command = new NpgsqlCommand("getlimited", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("_to", NpgsqlDbType.Integer).Value = to;
-                command.Parameters.Add("_from", NpgsqlDbType.Integer).Value = from;
+                var command = new NpgsqlCommand($"select * from getlimited({from}, {to})", connection);
+                command.CommandType = CommandType.Text;
+                //command.Parameters.Add("_to", NpgsqlDbType.Integer).Value = to;
+                //command.Parameters.Add("_from", NpgsqlDbType.Integer).Value = from;
 
                 await connection.OpenAsync();
 
@@ -72,7 +72,7 @@ namespace Employee.ADONET.Data.Repositories
                             name = reader.GetString(1),
                             current_city = reader.GetString(2),
                             department = reader.GetString(3),
-                            gender_type = reader.GetInt32(4) == 0 ? Gender.Male : Gender.Female
+                            gender_type = reader.GetString(4) == "0" ? Gender.Male : Gender.Female
                         });
                     }
                 }
@@ -87,9 +87,9 @@ namespace Employee.ADONET.Data.Repositories
 
             using (var connection = new NpgsqlConnection(Constants.CONNECTION_STRING))
             {
-                var command = new NpgsqlCommand("getoneemployee", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.Add("_id", NpgsqlDbType.Integer).Value = id;
+                var command = new NpgsqlCommand($"select * from getoneemployee({id})", connection);  
+                command.CommandType = CommandType.Text;
+                //command.Parameters.AddWithValue("_id", NpgsqlDbType.Integer, id);
 
                 await connection.OpenAsync();
 
@@ -98,23 +98,35 @@ namespace Employee.ADONET.Data.Repositories
                     while (reader.Read())
                     {
                         employees.Add(new EmployeeModel()
-                        {
+                        {   
                             id = reader.GetInt32(0),
                             name = reader.GetString(1),
                             current_city = reader.GetString(2),
                             department = reader.GetString(3),
-                            gender_type = reader.GetInt32(4) == 0 ? Gender.Male : Gender.Female
+                            gender_type = reader.GetString(4) == "0" ? Gender.Male : Gender.Female
                         });
                     }
                 }
             }
 
-            return employees;
+            return employees.Count <= 0 ? null : employees;
         }
 
-        public Task UpdateAsync(EmployeeModel employee)
+        public async Task UpdateAsync(EmployeeModel employee)
         {
-            throw new NotImplementedException();
+            using (var connection = new NpgsqlConnection(Constants.CONNECTION_STRING))
+            {
+                var command = new NpgsqlCommand("public.update_employee", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("_employee_id", NpgsqlDbType.Integer).Value = employee.id;
+                command.Parameters.Add("_name", NpgsqlDbType.Varchar).Value = employee.name;
+                command.Parameters.Add("_current_city", NpgsqlDbType.Varchar).Value = employee.current_city;
+                command.Parameters.Add("_department", NpgsqlDbType.Varchar).Value = employee.department;
+                command.Parameters.Add("_gender_type", NpgsqlDbType.Integer).Value = employee.gender_type == Gender.Male ? 0 : 1;
+                connection.OpenAsync();
+               
+                await command.ExecuteNonQueryAsync();
+            }
         }
     }
 }
