@@ -15,7 +15,7 @@ namespace Employee.App
         private Employee.ADONET.Service.Interfaces.IEmployeeService employeeServiceADO;
         private IList<EmployeeModel> employees;
         private long EmployeeId;
-        private int limit = 1;
+        private int limit = 0;
         #endregion
 
         public EmployeeView()
@@ -60,7 +60,7 @@ namespace Employee.App
                 City_txt.Clear();
                 Department_txt.Clear();
 
-                dataGridEmployee.DataSource = await employeeServiceADO.GetAllAsync(30, 1);
+                dataGridEmployee.DataSource = await employeeServiceADO.GetAllAsync(30, 0);
                 #endregion
             }
 
@@ -76,7 +76,7 @@ namespace Employee.App
             {
                 await employeeServiceADO.DeleteAllAsync();
                 MessageBox.Show("All Deleted !!!");
-                dataGridEmployee.DataSource = await employeeServiceADO.GetAllAsync(30, 1);
+                dataGridEmployee.DataSource = await employeeServiceADO.GetAllAsync(30, 0);
             }
             catch { MessageBox.Show("Error"); }
         }
@@ -91,10 +91,10 @@ namespace Employee.App
                     employeeServiceADO.DeleteAsync((int)employee.id);
 
                     MessageBox.Show($"{employee.name} Deleted!");
-                    dataGridEmployee.DataSource = await employeeServiceADO.GetAllAsync(30, 1);
-
+                    dataGridEmployee.DataSource = await employeeServiceADO.GetAllAsync(30, 0);
                 }
                 else { }
+
             } catch { }
 
         }
@@ -110,7 +110,7 @@ namespace Employee.App
         private async void Next_btn_Click(object sender, EventArgs e)
         {
             limit += 1;
-            employees = (await employeeServiceEF.GetAllAsync(null, limit)).ToList();
+            employees = await employeeServiceADO.GetAllAsync(30, limit);
             if (employees is null)
             {
                 MessageBox.Show("Tugadi");
@@ -121,10 +121,10 @@ namespace Employee.App
 
         private async void Back_btn_Click(object sender, EventArgs e)
         {
-            if (limit > 1)
+            if (limit > 0)
             {
                 limit -= 1;
-                employees = (await employeeServiceEF.GetAllAsync(null, limit)).ToList();
+                employees = await employeeServiceADO.GetAllAsync(30, limit);
                 dataGridEmployee.DataSource = employees;
             }
             else { MessageBox.Show("Siz birinchi pagedasiz"); }
@@ -156,7 +156,7 @@ namespace Employee.App
 
         private async void EmployeeView_Load(object sender, EventArgs e)
         {
-            dataGridEmployee.DataSource = (await employeeServiceEF.GetAllAsync(null, limit)).ToList();
+            dataGridEmployee.DataSource = await employeeServiceADO.GetAllAsync(30, 0);
         }
 
     }
